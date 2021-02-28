@@ -1,10 +1,18 @@
 import React from 'react';
+import { Button, Container } from 'react-bootstrap';
+import PlayerCard from './Components/PlayerCards/PlayerCard'
 import './App.css';
 
 function App() {
   return (
     <div>
-      Lets Start!
+      <Container>
+        Lets Start!
+      <Button variant="primary">Hello</Button>
+
+        <PlayerCard />
+      </Container>
+
     </div>
   );
 }
