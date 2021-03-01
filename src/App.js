@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import PlayerCard from './Components/PlayerCards/PlayerCard'
 import TeamStatistics from './Components/TeamStat/TeamStatistics'
 import './App.css';
@@ -33,13 +33,22 @@ function App() {
   return (
     <div className="app">
       <Container>
-        <h1 style={{
+        <h1 className="display-4 bg-warning rounded" style={{
           textAlign: "center",
-          backgroundColor: "yellowgreen",
           padding: "20px"
         }}>Welcome to Player Auction 2021</h1>
-        <TeamStatistics chosenplayer={chosenplayer} />
-        <PlayerCard players={players} selectPlayer={handleSelectPlayer} />
+        <Row>
+          <Col className="col-md-9">
+            <PlayerCard players={players} selectPlayer={handleSelectPlayer} />
+
+          </Col>
+          <Col className="col-md-3">
+            <TeamStatistics chosenplayer={chosenplayer} />
+          </Col>
+        </Row>
+
+
+
       </Container>
 
     </div>

@@ -10,18 +10,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 const PlayerCard = ({ players, selectPlayer }) => {
+    function handleButtonClick(e) {
+        e.target.textContent = "Added";
+        e.target.classList.add("disabled");
+    }
     return (
         <div>
             <CardColumns>
                 {players.map(player => (
-                    <Card key={player.id} style={{ maxWidth: "300px" }}>
+                    <Card
+                        bg="success"
+                        key={player.id}
+                        style={{
+                            maxWidth: "300px",
+                            height: "500px",
+                        }}
+                    >
                         <Card.Img
-                            style={{ maxHeight: "300px", maxWidth: "300px" }}
+                            style={{
+                                maxHeight: "200px",
+                                maxWidth: "100%",
+                                margin: "0 auto",
+                            }}
                             variant="top"
                             src={player.photoUrl}
                         />
                         <Card.Body>
-                            <Card.Title as="h2" style={{ textAlign: "center" }}>
+                            <Card.Title
+                                as="h3"
+                                style={{ textAlign: "center", height: "60px" }}
+                            >
                                 {player.name}
                             </Card.Title>
 
@@ -30,21 +48,17 @@ const PlayerCard = ({ players, selectPlayer }) => {
                                     <strong>Role:</strong> {player.role}
                                 </ListGroupItem>
                                 <ListGroupItem>
-                                    <strong>Phone:</strong> {player.phone}
-                                </ListGroupItem>
-                                <ListGroupItem>
-                                    <strong>Email:</strong> {player.email}
-                                </ListGroupItem>
-                                <ListGroupItem>
-                                    <strong>Salary:</strong> BDT-
-                                    {player.salary}
+                                    <strong>Salary:</strong> ${player.salary}
                                 </ListGroupItem>
                             </ListGroup>
                         </Card.Body>
                         <Card.Footer style={{ textAlign: "center" }}>
                             <Button
                                 variant="info"
-                                onClick={() => selectPlayer(player)}
+                                onClick={e => {
+                                    selectPlayer(player);
+                                    handleButtonClick(e);
+                                }}
                             >
                                 Add to Team{" "}
                                 <FontAwesomeIcon icon={faUserPlus} />
