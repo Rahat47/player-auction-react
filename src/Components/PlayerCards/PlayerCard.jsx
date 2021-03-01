@@ -1,59 +1,58 @@
 import React from "react";
-import { CardDeck, Card } from "react-bootstrap";
+import {
+    CardColumns,
+    Card,
+    ListGroupItem,
+    ListGroup,
+    Button,
+} from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
-const PlayerCard = () => {
+const PlayerCard = ({ players, selectPlayer }) => {
     return (
         <div>
-            <CardDeck>
-                <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
-                    <Card.Body>
-                        <Card.Title>Card title</Card.Title>
-                        <Card.Text>
-                            This is a wider card with supporting text below as a
-                            natural lead-in to additional content. This content
-                            is a little bit longer.
-                        </Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                        <small className="text-muted">
-                            Last updated 3 mins ago
-                        </small>
-                    </Card.Footer>
-                </Card>
-                <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
-                    <Card.Body>
-                        <Card.Title>Card title</Card.Title>
-                        <Card.Text>
-                            This card has supporting text below as a natural
-                            lead-in to additional content.{" "}
-                        </Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                        <small className="text-muted">
-                            Last updated 3 mins ago
-                        </small>
-                    </Card.Footer>
-                </Card>
-                <Card>
-                    <Card.Img variant="top" src="holder.js/100px160" />
-                    <Card.Body>
-                        <Card.Title>Card title</Card.Title>
-                        <Card.Text>
-                            This is a wider card with supporting text below as a
-                            natural lead-in to additional content. This card has
-                            even longer content than the first to show that
-                            equal height action.
-                        </Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                        <small className="text-muted">
-                            Last updated 3 mins ago
-                        </small>
-                    </Card.Footer>
-                </Card>
-            </CardDeck>
+            <CardColumns>
+                {players.map(player => (
+                    <Card key={player.id} style={{ maxWidth: "300px" }}>
+                        <Card.Img
+                            style={{ maxHeight: "300px", maxWidth: "300px" }}
+                            variant="top"
+                            src={player.photoUrl}
+                        />
+                        <Card.Body>
+                            <Card.Title as="h2" style={{ textAlign: "center" }}>
+                                {player.name}
+                            </Card.Title>
+
+                            <ListGroup className="list-group-flush">
+                                <ListGroupItem>
+                                    <strong>Role:</strong> {player.role}
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <strong>Phone:</strong> {player.phone}
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <strong>Email:</strong> {player.email}
+                                </ListGroupItem>
+                                <ListGroupItem>
+                                    <strong>Salary:</strong> BDT-
+                                    {player.salary}
+                                </ListGroupItem>
+                            </ListGroup>
+                        </Card.Body>
+                        <Card.Footer style={{ textAlign: "center" }}>
+                            <Button
+                                variant="info"
+                                onClick={() => selectPlayer(player)}
+                            >
+                                Add to Team{" "}
+                                <FontAwesomeIcon icon={faUserPlus} />
+                            </Button>
+                        </Card.Footer>
+                    </Card>
+                ))}
+            </CardColumns>
         </div>
     );
 };

@@ -1,0 +1,9 @@
+.app {
+    background-image: linear-gradient(to bottom right, green, yellowgreen);
+}
+
+.app .heading {
+    text-align: center;
+    padding: "20px";
+    background-color: "yellowgreen";
+}
